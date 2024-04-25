@@ -74,8 +74,8 @@ const Rooms = () => {
           </thead>
           <tbody className="text-center text-base bg-slate-300 border">
             {data.map((item) => (
-              <tr key={item.id}>
-                <td className="border py-1">{item.id}</td>
+              <tr key={item.room_id}>
+                <td className="border py-1">{item.room_id}</td>
                 <td className="border">{item.name}</td>
                 <td className="border">{item.type}</td>
                 <td className="border w-[500px]">{item.description}</td>

@@ -17,6 +17,7 @@ import Employee from "./components/Employee/Employee.jsx";
 import Booking, { loadRoom } from "./Pages/Booking/Booking.jsx";
 import BookingDetails from "./Pages/Admin/BookingDetails/BookingDetails.jsx";
 import AllRoom from "./Pages/AllRoom/AllRoom.jsx";
+import UsersPrivateRoute from "./route/UsersPrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,15 +30,19 @@ const router = createBrowserRouter([
         loader: loadRooms,
       },
       {
-        path:'all-rooms',
+        path: "all-rooms",
         element: <AllRoom />,
-        loader: loadRooms
+        loader: loadRooms,
       },
       {
-        path: 'booking/:id/:name',
-        element: <Booking></Booking>,
-        loader: loadRoom
-      }
+        path: "booking/:id/:name",
+        element: (
+          <UsersPrivateRoute>
+            <Booking></Booking>
+          </UsersPrivateRoute>
+        ),
+        loader: loadRoom,
+      },
     ],
   },
   {
@@ -66,12 +71,12 @@ const router = createBrowserRouter([
       },
       {
         path: "employee",
-        element: <Employee />
+        element: <Employee />,
       },
       {
-        path: 'booking-details',
-        element: <BookingDetails />
-      }
+        path: "booking-details",
+        element: <BookingDetails />,
+      },
     ],
   },
   {
