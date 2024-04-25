@@ -122,7 +122,7 @@ const Signin = () => {
             </button>
           </div>
           <p className="font-bold mt-7 mb-20 text-center w-96 text-black/60">
-            Already Have an Account?
+            Don't have an account?
             <NavLink to="/sign-up" className="text-teal-700">
               {" "}
               Signup
