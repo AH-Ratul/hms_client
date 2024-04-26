@@ -12,7 +12,7 @@ const UsersPrivateRoute = ({ children }) => {
   }
 
   if (!user) {
-    toast.error("Please Log-in first!!!!!", { duration: 1500 });
+    toast.error("You have to Log-in first", { duration: 1500 });
     return <Navigate to="/sign-in" state={{ from: location }} replace />;
   }
 };

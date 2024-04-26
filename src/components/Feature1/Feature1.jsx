@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Feature1 = () => {
   return (
-    <div className="flex mt-36 pl-10">
+    <div className="flex mt-56 pl-10">
       <div className="w-[600px]">
         <img src="../../../public/img/comb1.jpg" alt="" />
       </div>

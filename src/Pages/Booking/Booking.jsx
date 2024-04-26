@@ -116,17 +116,26 @@ const Booking = () => {
     });
   };
   return (
-    <div className="mt-28 absolute ">
-      <div className="border rounded-md mr-72 ml-72 shadow-md">
+    <div className="mt-28 absolute w-full">
+      <div className="border rounded-md mr-60 ml-60 ">
         <div>
           <img
             src={newdata.image}
             alt=""
-            className="h-[400px] w-[700px] rounded-t-md"
+            className="h-[400px] w-[900px] rounded-t-md"
           />
         </div>
         <div className="p-3">
-          <h1 className="text-xl font-semibold text-center">{newdata.name}</h1>
+          <div className="font-Literata">
+            <h1 className="text-xl ">
+              <span className="font-bold  text-[#DE3163]">Room Name:</span>{" "}
+              {newdata.name}
+            </h1>
+            <p className="text-xl ">
+              <span className="font-bold text-[#DE3163]">Room Type:</span>{" "}
+              {newdata.type}
+            </p>
+          </div>
           <div className="mt-7 pl-7 pr-7">
             <div className="flex gap-7 mt-3 mb-5">
               <div className="flex flex-col w-full">
