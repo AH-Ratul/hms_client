@@ -13,7 +13,7 @@ const Signin = () => {
   const location = useLocation();
   const navigate = useNavigate()
 
-  const to = location?.state?.from?.pathname;
+  const to = location?.state?.from?.pathname || '/';
   //console.log(location)
 
   const handleInputChange = (e) => {
