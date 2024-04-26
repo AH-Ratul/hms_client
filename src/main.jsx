@@ -18,6 +18,7 @@ import Booking, { loadRoom } from "./Pages/Booking/Booking.jsx";
 import BookingDetails from "./Pages/Admin/BookingDetails/BookingDetails.jsx";
 import AllRoom from "./Pages/AllRoom/AllRoom.jsx";
 import UsersPrivateRoute from "./route/UsersPrivateRoute.jsx";
+import SearchRooms from "./Pages/Search_rooms/SearchRooms.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
         ),
         loader: loadRoom,
       },
+      {
+        path: 'search-rooms',
+        element: <SearchRooms />
+      }
     ],
   },
   {

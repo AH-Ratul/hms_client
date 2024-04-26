@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Feature1 from "../../components/Feature1/Feature1";
 import RoomCart from "../../components/Rooms/RoomCart";
 import axios from "axios";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 // function to load rooms
 export const loadRooms = async () => {
@@ -12,9 +12,10 @@ export const loadRooms = async () => {
 
 const Home = () => {
   const [checkData, setCheckData] = useState({
-    check_inn: "",
-    check_Out: "",
+    check_in: "",
+    check_out: "",
   });
+  const navigate = useNavigate();
 
   const OnChange = (e) => {
     const { name, value } = e.target;
@@ -28,16 +29,48 @@ const Home = () => {
   const sliceRoom = roomdata.data.slice(0, 3);
   //console.log(sliceRoom)
 
+  // handle search rooms ------------------
+  // useEffect(() => {
+  //   const fetchedRooms = async () => {
+  //     try {
+  //       const searchRooms = await axios.get("http://localhost:5500/search-rooms", {
+  //         params: {
+  //           check_in: checkData.check_in, // update with actual check_in date
+  //           check_out: checkData.check_out, // update with actual check_out date
+  //         },
+  //       });
+  //       console.log(searchRooms.data)
+  //       setRooms(searchRooms.data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchedRooms();
+  // }, [checkData]);
 
-  const handleCheckAvailability = (e) => {
+  const handleCheckAvailability = async (e) => {
     e.preventDefault();
-    console.log(checkData)
+    //console.log(checkData)
+
+    try {
+      const search = await axios.post(
+        "http://localhost:5500/search-rooms",
+        checkData
+      );
+      const rooms = search.data;
+      //console.log(search.data)
+
+      // navigate to search results page
+      navigate("/search-rooms", { state: { rooms } });
+    } catch (error) {
+      console.log(error);
+    }
 
     setCheckData({
-      check_inn: '',
-      check_Out: ''
-    })
-  }
+      check_in: "",
+      check_out: "",
+    });
+  };
 
   return (
     <div className="h-screen relative bg-cover bg-center w-full bg-[url('../../../public/img/beach3.jpg')]">
@@ -54,20 +87,24 @@ const Home = () => {
         <div>
           <input
             type="date"
-            name= 'check_inn'
-            value={checkData.check_inn}
+            name="check_in"
+            value={checkData.check_in}
             onChange={OnChange}
             placeholder="Check-in"
             className="outline-none border py-2 ps-3 pe-2 mr-8  rounded placeholder:text-slate-600"
           />
           <input
             type="date"
-            name="check_Out"
-            value={checkData.check_Out}
+            name="check_out"
+            value={checkData.check_out}
             onChange={OnChange}
             className="outline-none border py-2 ps-3 pe-2  rounded placeholder:text-slate-600"
+            placeholder="Check-out"
           />
-          <button onClick={handleCheckAvailability} className="ml-8 bg-teal-500 hover:bg-teal-600 font-Literata text-lg py-2 px-4 text-white">
+          <button
+            onClick={handleCheckAvailability}
+            className="ml-8 bg-teal-500 hover:bg-teal-600 font-Literata text-lg py-2 px-4 text-white"
+          >
             Check Availability
           </button>
         </div>
