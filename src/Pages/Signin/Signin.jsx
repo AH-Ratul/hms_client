@@ -24,6 +24,7 @@ const Signin = () => {
     }));
   };
 
+  // form validation
   const validateLogin = () => {
     if (!formData.email || !formData.password) {
       toast.error("Email and Password are required.", {
@@ -70,7 +71,7 @@ const Signin = () => {
 
         //console.log("response", login_response.data.message);
         toast.success(`${login_response.data.message}`, { duration: 1500 });
-        navigate('/')
+        navigate(to);
       }
     } catch (error) {
       console.error(error);

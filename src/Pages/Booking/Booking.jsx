@@ -79,7 +79,7 @@ const Booking = () => {
       adults: bookData.adults,
       kids: bookData.kids,
     };
-    console.log(postdata);
+    //console.log(postdata);
 
     // validate before submission
     if (!validateForm()) {

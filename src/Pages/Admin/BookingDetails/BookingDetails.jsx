@@ -24,7 +24,7 @@ const BookingDetails = () => {
   }, []);
 
   const data = getData.data;
-  console.log(getData)
+  //console.log(getData)
 
   if (loading) {
     <Loader />;

@@ -14,7 +14,7 @@ const Home = () => {
   // 
   const roomdata = useLoaderData();
   const sliceRoom = roomdata.data.slice(0,3);
-  console.log(sliceRoom)
+  //console.log(sliceRoom)
 
 
   return (
