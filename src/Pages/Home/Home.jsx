@@ -29,25 +29,6 @@ const Home = () => {
   const sliceRoom = roomdata.data.slice(0, 3);
   //console.log(sliceRoom)
 
-  // handle search rooms ------------------
-  // useEffect(() => {
-  //   const fetchedRooms = async () => {
-  //     try {
-  //       const searchRooms = await axios.get("http://localhost:5500/search-rooms", {
-  //         params: {
-  //           check_in: checkData.check_in, // update with actual check_in date
-  //           check_out: checkData.check_out, // update with actual check_out date
-  //         },
-  //       });
-  //       console.log(searchRooms.data)
-  //       setRooms(searchRooms.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   fetchedRooms();
-  // }, [checkData]);
-
   const handleCheckAvailability = async (e) => {
     e.preventDefault();
     //console.log(checkData)

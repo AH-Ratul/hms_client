@@ -19,6 +19,7 @@ import BookingDetails from "./Pages/Admin/BookingDetails/BookingDetails.jsx";
 import AllRoom from "./Pages/AllRoom/AllRoom.jsx";
 import UsersPrivateRoute from "./route/UsersPrivateRoute.jsx";
 import SearchRooms from "./Pages/Search_rooms/SearchRooms.jsx";
+import CartPage from "./Pages/CartPage/CartPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -45,9 +46,14 @@ const router = createBrowserRouter([
         loader: loadRoom,
       },
       {
-        path: 'search-rooms',
-        element: <SearchRooms />
-      }
+        path: "search-rooms",
+        element: <SearchRooms />,
+      },
+      {
+        path: "booking/:id/:name/cart",
+        element: <CartPage />,
+        loader: loadRoom
+      },
     ],
   },
   {

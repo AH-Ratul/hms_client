@@ -1,12 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 // function to handle fetching room by id
 export const loadRoom = async ({ params }) => {
   // fetch room by id for selected room
-  //console.log(params);
   const data = await axios.get(`http://localhost:5500/getRoom?id=${params.id}`);
   return data;
 };
@@ -33,6 +32,8 @@ const Booking = () => {
     adults: "",
     kids: "",
   });
+
+  const navigate = useNavigate();
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -68,6 +69,7 @@ const Booking = () => {
       room_id: newdata.room_id,
       room_name: newdata.name,
       room_type: newdata.type,
+      price: newdata.price,
       first_name: bookData.firstname,
       last_name: bookData.lastname,
       address: bookData.address,
@@ -86,21 +88,9 @@ const Booking = () => {
       return;
     }
 
-    try {
-      const postBookingData = await axios.post(
-        "http://localhost:5500/booking",
-        postdata
-      );
-
-      if (postBookingData) {
-        toast.success(`${postBookingData.data.message}`, { duration: 1500 });
-      } else {
-        toast.error(`${postBookingData.data.error}`, { duration: 1500 });
-      }
-    } catch (error) {
-      console.log("error", error);
-      toast.error("An Error Occurred", { duration: 1500 });
-    }
+    navigate(`/booking/${newdata.room_id}/${newdata.name}/cart`, {
+      state: { postdata },
+    });
 
     setBookData({
       firstname: "",
@@ -116,26 +106,12 @@ const Booking = () => {
     });
   };
   return (
-    <div className="mt-28 absolute w-full">
+    <div className="mt-40 absolute w-full">
       <div className="border rounded-md mr-60 ml-60 ">
-        <div>
-          <img
-            src={newdata.image}
-            alt=""
-            className="h-[400px] w-[900px] rounded-t-md"
-          />
-        </div>
         <div className="p-3">
-          <div className="font-Literata">
-            <h1 className="text-xl ">
-              <span className="font-bold  text-[#DE3163]">Room Name:</span>{" "}
-              {newdata.name}
-            </h1>
-            <p className="text-xl ">
-              <span className="font-bold text-[#DE3163]">Room Type:</span>{" "}
-              {newdata.type}
-            </p>
-          </div>
+          <h1 className="text-2xl py-5 ml-9 border-b text-teal-500 font-Literata font-semibold">
+            Give your information to book a room
+          </h1>
           <div className="mt-7 pl-7 pr-7">
             <div className="flex gap-7 mt-3 mb-5">
               <div className="flex flex-col w-full">
