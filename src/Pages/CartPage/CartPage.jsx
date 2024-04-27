@@ -46,6 +46,7 @@ const CartPage = () => {
     calculateNight(roomdata.check_in, roomdata.check_out),
     price_per_night
   );
+  // net total
   const netTotal = totalWithTax(
     calculateNight(roomdata.check_in, roomdata.check_out),
     price_per_night
@@ -73,18 +74,24 @@ const CartPage = () => {
       kids: roomdata.kids,
     };
 
-    console.log(data);
+    //console.log(data);
 
     try {
       const postBookingData = await axios.post(
         "http://localhost:5500/booking",
         data
       );
+      console.log(postBookingData);
+      const bookData = postBookingData.data;
+      navigate(
+        `/booking/${roomdata.room_id}/${roomdata.room_name}/cart/checkout`,
+        { state: { data } }
+      );
 
-      if (postBookingData) {
-        toast.success(`${postBookingData.data.message}`, { duration: 1500 });
+      if (bookData) {
+        toast.success(`${bookData.message}`, { duration: 1500 });
       } else {
-        toast.error(`${postBookingData.data.error}`, { duration: 1500 });
+        toast.error(`${bookData.error}`, { duration: 1500 });
       }
     } catch (error) {
       console.log("error", error);

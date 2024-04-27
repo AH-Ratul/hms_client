@@ -110,7 +110,7 @@ const Booking = () => {
       <div className="border rounded-md mr-60 ml-60 ">
         <div className="p-3">
           <h1 className="text-2xl py-5 ml-9 border-b text-teal-500 font-Literata font-semibold">
-            Give your information to book a room
+            Give your information to book this room
           </h1>
           <div className="mt-7 pl-7 pr-7">
             <div className="flex gap-7 mt-3 mb-5">
