@@ -1,7 +1,8 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const RoomResults = ({ room }) => {
-  const { name, type, image, price } = room;
+  const {room_id, name, type, image, price } = room;
   return (
     <div className="mt-14 flex">
       <img src={image} alt="" className="w-96" />
@@ -13,7 +14,7 @@ const RoomResults = ({ room }) => {
         <p className="text-base">
           Price: <span className="text-yellow-500">{price}</span>
         </p>
-        <button className="bg-amber-500 hover:bg-amber-600 py-2 px-16 w-fit mt-8 text-white">Select This Room</button>
+        <NavLink to={`/booking/${room_id}/${name}`} className="bg-amber-500 hover:bg-amber-600 py-2 px-16 w-fit mt-8 text-white">Select This Room</NavLink>
       </div>
     </div>
   );
