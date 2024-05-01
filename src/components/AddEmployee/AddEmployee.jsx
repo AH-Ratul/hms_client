@@ -7,6 +7,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
     name: "",
     position: "",
     phone: "",
+    address: "",
     hire_date: "",
     salary: "",
   });
@@ -29,13 +30,18 @@ const AddEmployee = ({ isOpen, onClose }) => {
       );
 
       console.log(addEmployee);
-      toast.success(`${addEmployee.data.message}`, {duration: 1500});
+      if(addEmployee){
+        toast.success(`${addEmployee.data.message}`, {duration: 1500});
+      } else {
+        toast.error(`${addEmployee.data.error}`, {duration: 1500})
+      }
 
       // clear all fields
       setEmpData({
         name: "",
         position: "",
         phone: "",
+        address: "",
         hire_date: "",
         salary: "",
       });
@@ -91,6 +97,15 @@ const AddEmployee = ({ isOpen, onClose }) => {
                 value={empData.phone}
                 onChange={handleOnChange}
                 placeholder="Phone"
+                className="border ps-2 py-1 outline-none w-full mb-4"
+              />
+              <p className="font-medium mb-1">Address</p>
+              <input
+                type="text"
+                name="address"
+                value={empData.address}
+                onChange={handleOnChange}
+                placeholder="Address"
                 className="border ps-2 py-1 outline-none w-full mb-4"
               />
               <p className="font-medium mb-1">Hire Date</p>

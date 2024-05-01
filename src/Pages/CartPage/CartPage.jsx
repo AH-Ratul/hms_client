@@ -55,6 +55,11 @@ const CartPage = () => {
   const handleCheckOut = async (e) => {
     e.preventDefault();
 
+    if (payment !== "offline") {
+      toast.error("Please select Offline method!!!", { duration: 2000 });
+      return;
+    }
+
     const data = {
       room_id: roomdata.room_id,
       room_name: roomdata.room_name,

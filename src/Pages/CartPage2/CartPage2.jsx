@@ -6,7 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 const CartPage2 = () => {
   const location = useLocation();
   const data = location?.state?.data;
-  //console.log(data);
+  console.log(data);
 
   return (
     <div className="mt-32 absolute ml-20">
@@ -14,7 +14,7 @@ const CartPage2 = () => {
         Thank You for Your Booking !!!
       </h1>
       <p className="mt-9 text-lg text-sky-500">
-        Thank you! Your booking has been placed. We will contact you to confirm
+        Your booking has been placed. We will contact you to confirm
         about the booking soon.
       </p>
 

@@ -1,10 +1,24 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loader from "../../../components/Loader/Loader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import DeleteBooking from "../../../components/DeleteBooking/DeleteBooking";
 
 const BookingDetails = () => {
   const [getData, setGetData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // hadling modal state
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  }
+
+  const closeModal = () => {
+    setIsOpen(false);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,6 +58,11 @@ const BookingDetails = () => {
             </p>
           </h2>
         </div>
+        <button onClick={openModal} className="flex items-center bg-red-600 hover:bg-red-500 py-2 px-2 text-sm font-bold text-white rounded">
+          <FontAwesomeIcon icon={faTrashCan} className="mr-1 text-base" />
+          Delete
+        </button>
+        <DeleteBooking isOpen={isOpen} onClose={closeModal} />
       </div>
       <div className="mt-5  ">
         <table className="table-auto border-collapse border border-green-400 w-full">
@@ -53,6 +72,7 @@ const BookingDetails = () => {
               <th className="border ">Room-id</th>
               <th className="border ">Room Name</th>
               <th className="border ">Room Type</th>
+              <th className="border ">Amount</th>
               <th className="border ">First Name</th>
               <th className="border ">Last Name</th>
               <th className="border ">Address</th>
@@ -66,24 +86,26 @@ const BookingDetails = () => {
             </tr>
           </thead>
           <tbody className="text-center text-[13px] bg-slate-300 border">
-          {data && data.map((item) => (
-              <tr key={item.booking_id}>
-                <td className="border py-1">{item.booking_id}</td>
-                <td className="border">{item.room_id}</td>
-                <td className="border">{item.room_name}</td>
-                <td className="border">{item.room_type}</td>
-                <td className="border">{item.first_name}</td>
-                <td className="border">{item.last_name}</td>
-                <td className="border">{item.address}</td>
-                <td className="border">{item.city}</td>
-                <td className="border">{item.phone}</td>
-                <td className="border">{item.email}</td>
-                <td className="border">{item.check_in}</td>
-                <td className="border">{item.check_out}</td>
-                <td className="border">{item.adults}</td>
-                <td className="border">{item.kids}</td>
-              </tr>
-            ))}
+            {data &&
+              data.map((item) => (
+                <tr key={item.booking_id}>
+                  <td className="border py-1">{item.booking_id}</td>
+                  <td className="border">{item.room_id}</td>
+                  <td className="border">{item.room_name}</td>
+                  <td className="border">{item.room_type}</td>
+                  <td className="border">{item.total_amount} tk.</td>
+                  <td className="border">{item.first_name}</td>
+                  <td className="border">{item.last_name}</td>
+                  <td className="border">{item.address}</td>
+                  <td className="border">{item.city}</td>
+                  <td className="border">{item.phone}</td>
+                  <td className="border">{item.email}</td>
+                  <td className="border">{item.check_in}</td>
+                  <td className="border">{item.check_out}</td>
+                  <td className="border">{item.adults}</td>
+                  <td className="border">{item.kids}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
