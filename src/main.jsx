@@ -7,7 +7,7 @@ import Home, { loadRooms } from "./Pages/Home/Home.jsx";
 import Signup from "./Pages/Signup/Signup.jsx";
 import Signin from "./Pages/Signin/Signin.jsx";
 import Admin from "./Pages/Admin/Admin.jsx";
-import Dashboard from "./components/Dashboard/Dashboard.jsx";
+import Dashboard, { loadTotal } from "./components/Dashboard/Dashboard.jsx";
 import Rooms from "./components/Rooms/Rooms.jsx";
 import AdminLogin from "./Pages/Admin/AdminLogin/AdminLogin.jsx";
 import AdminSignup from "./Pages/Admin/AdminSignup/AdminSignup.jsx";
@@ -80,6 +80,7 @@ const router = createBrowserRouter([
       {
         path: "admin",
         element: <Dashboard />,
+        loader: loadTotal,
       },
       {
         path: "rooms",

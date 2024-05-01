@@ -27,7 +27,7 @@ const Sidebar = () => {
             Employees
           </NavLink>
           <NavLink to='/booking-details' className="py-2 pl-2 hover:bg-gray-700">Bookings</NavLink>
-          <NavLink className="py-2 pl-2 hover:bg-gray-700">Users</NavLink>
+          
         </div>
         {admin ? (
           <button
