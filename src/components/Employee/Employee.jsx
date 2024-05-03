@@ -68,7 +68,7 @@ const Employee = () => {
       </div>
       <div className="mt-3">
         <h1 className="mb-3 text-2xl font-Literata text-green-500">
-          Branch: Chittagong
+          Branch: Chattogram
         </h1>
         <table className="table-auto border-collapse border border-green-400 w-full">
           <thead className="bg-purple-700 text-white">
