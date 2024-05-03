@@ -6,6 +6,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
   const [empData, setEmpData] = useState({
     name: "",
     position: "",
+    branch: "",
     phone: "",
     address: "",
     hire_date: "",
@@ -21,7 +22,12 @@ const AddEmployee = ({ isOpen, onClose }) => {
   };
 
   const handleAddEmp = async () => {
-    console.log('form data',empData);
+    console.log("form data", empData);
+
+    if (empData.branch !== "Chattogram" || "Cox's Bazar") {
+      toast.error("Please give valid branch name", { duration: 2000 });
+      return;
+    }
 
     try {
       const addEmployee = await axios.post(
@@ -30,16 +36,17 @@ const AddEmployee = ({ isOpen, onClose }) => {
       );
 
       console.log(addEmployee);
-      if(addEmployee){
-        toast.success(`${addEmployee.data.message}`, {duration: 1500});
+      if (addEmployee) {
+        toast.success(`${addEmployee.data.message}`, { duration: 2000 });
       } else {
-        toast.error(`${addEmployee.data.error}`, {duration: 1500})
+        toast.error(`${addEmployee.data.error}`, { duration: 1500 });
       }
 
       // clear all fields
       setEmpData({
         name: "",
         position: "",
+        branch: "",
         phone: "",
         address: "",
         hire_date: "",
@@ -57,7 +64,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
       }`}
     >
       <div className="flex  items-center justify-center min-h-screen absolute bg-rgba2 w-full ">
-        <div className="bg-white flex flex-col items-center rounded  p-4 ">
+        <div className="bg-white flex flex-col items-center rounded  p-4 my-5 ">
           <div className="flex items-center text-2xl font-semibold text-teal-600 w-full border-b pb-4">
             <h1>Add Employee</h1>
             <div>
@@ -86,6 +93,15 @@ const AddEmployee = ({ isOpen, onClose }) => {
                 type="text"
                 name="position"
                 value={empData.position}
+                onChange={handleOnChange}
+                placeholder="Position"
+                className="border ps-2 py-1 outline-none w-full mb-4"
+              />
+              <p className="font-medium mb-1">Branch</p>
+              <input
+                type="text"
+                name="branch"
+                value={empData.branch}
                 onChange={handleOnChange}
                 placeholder="Position"
                 className="border ps-2 py-1 outline-none w-full mb-4"
