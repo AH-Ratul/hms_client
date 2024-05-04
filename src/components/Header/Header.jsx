@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../Provider/AuthProvider";
+import profile from "../../../public/img/profile.png";
+import woman from "../../../public/img/woman.png";
+import UseToggle from "../../Hooks/UseToggle";
+import DropDown from "./DropDown";
 
 const Header = () => {
-  const { user, userlogout } = useAuth();
+  const { user } = useAuth();
+  const [isOpen, setIsOpen, ref] = UseToggle(false);
 
-  const handleUserLogout = () => {
-    userlogout();
-  };
   // change nav bar background on scroll
   // const [navbar, setNavbar] = useState(0);
   // const changeBG = () => {
@@ -21,17 +23,29 @@ const Header = () => {
         <div>
           <h1 className="text-3xl text-black/90 font-bold">Paradise Inn</h1>
         </div>
-        <div className=" flex text-lg ">
-          <NavLink to="/" className="hover:text-teal-600">Home</NavLink>
-          <NavLink to="/all-rooms" className=" ml-5 hover:text-teal-600">Rooms</NavLink>
+        <div className=" flex items-center text-lg ">
+          <NavLink to="/" className="hover:text-teal-600">
+            Home
+          </NavLink>
+          <NavLink to="/all-rooms" className=" ml-5 hover:text-teal-600">
+            Rooms
+          </NavLink>
           <NavLink className="mr-28 ml-5 hover:text-teal-600">Contact</NavLink>
           {user ? (
-            <button
-              onClick={handleUserLogout}
-              className="mr-5 hover:text-teal-700 "
-            >
-              Sign out
-            </button>
+            <>
+              <div
+                ref={ref}
+                onClick={() => setIsOpen(!isOpen)}
+                className="cursor-pointer relative border p-1 hover:border-teal-400 rounded-full"
+              >
+                {user.gender === "Male" ? (
+                  <img src={profile} alt="p" className="w-9" />
+                ) : (
+                  <img src={woman} alt="w" className="w-9" />
+                )}
+                {isOpen && <DropDown></DropDown>}
+              </div>
+            </>
           ) : (
             <div>
               <NavLink to="/sign-in" className="mr-5 hover:text-teal-700 ">

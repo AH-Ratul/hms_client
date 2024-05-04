@@ -82,7 +82,7 @@ const AdminSignup = () => {
         </h1>
         <p className="text-xl leading-10 flex items-center">
           <CiUser />
-          Name
+          Fullname
         </p>
         <input
           type="text"
@@ -92,6 +92,7 @@ const AdminSignup = () => {
           placeholder="Name"
           className="border rounded w-full py-2 ps-2 mb-3 outline-none"
         />
+
         <p className="text-xl leading-10 flex items-center">
           <HiOutlineMail />
           Email

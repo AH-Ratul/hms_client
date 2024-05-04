@@ -7,6 +7,7 @@ export const useAuth = () => {
 };
 
 const AuthProvider = ({ children }) => {
+  // state management for admin
   const [admin, setAdmin] = useState(() => {
     const storedAdmin = localStorage.getItem("admin");
     return storedAdmin ? JSON.parse(storedAdmin) : null;
@@ -18,12 +19,9 @@ const AuthProvider = ({ children }) => {
     return storedAdmin ? JSON.parse(storedAdmin) : null;
   });
 
+  // handle admin login
   const admin_login = (admindata) => {
     setAdmin(admindata);
-  };
-
-  const userlogin = (userData) => {
-    setUser(userData);
   };
 
   useEffect(() => {
@@ -34,27 +32,39 @@ const AuthProvider = ({ children }) => {
     }
   }, [admin]); // Include admin as a dependency
 
+  // handle user login
+  const userlogin = (userData) => {
+    setUser(userData);
+  };
+
   useEffect(() => {
     if (user) {
       localStorage.setItem("users", JSON.stringify(user));
     } else {
       localStorage.removeItem("users");
     }
-  }, [user]);
+  }, [user]); // include users as a dependency
 
-  // handle logout
+  // handle admin-logout
   const adminLogout = () => {
     setAdmin(null);
     localStorage.removeItem("admin");
   };
 
-  // handle user logout
+  // handle user-logout
   const userlogout = () => {
     setUser(null);
-    localStorage.removeItem('users');
-  }
+    localStorage.removeItem("users");
+  };
 
-  const AuthInfo = { admin, admin_login, adminLogout, user, userlogin, userlogout };
+  const AuthInfo = {
+    admin,
+    admin_login,
+    adminLogout,
+    user,
+    userlogin,
+    userlogout,
+  };
   return (
     <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>
   );
