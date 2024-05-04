@@ -9,11 +9,11 @@ const Header = () => {
     userlogout();
   };
   // change nav bar background on scroll
-  const [navbar, setNavbar] = useState(0);
-  const changeBG = () => {
-    window.scrollY >= 145 ? setNavbar(true) : setNavbar(false);
-  };
-  window.addEventListener("scroll", changeBG);
+  // const [navbar, setNavbar] = useState(0);
+  // const changeBG = () => {
+  //   window.scrollY >= 145 ? setNavbar(true) : setNavbar(false);
+  // };
+  // window.addEventListener("scroll", changeBG);
 
   return (
     <div>

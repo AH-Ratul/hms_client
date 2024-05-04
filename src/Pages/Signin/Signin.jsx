@@ -11,9 +11,9 @@ const Signin = () => {
   });
   const { userlogin } = useAuth();
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const to = location?.state?.from?.pathname || '/';
+  const to = location?.state?.from?.pathname || "/";
   //console.log(location)
 
   const handleInputChange = (e) => {
@@ -47,7 +47,7 @@ const Signin = () => {
     return true;
   };
 
-  const handleSingIn = async(e) => {
+  const handleSingIn = async (e) => {
     e.preventDefault();
 
     // validate before submission
@@ -62,12 +62,18 @@ const Signin = () => {
       );
 
       if (login_response) {
-        const userLog = login_response.config.data;
-        //console.log(userLog);
-        //console.log(login_response);
-        userlogin(userLog);
+        const userLog1 = login_response.data.user1; // if user is male
+        const userLog2 = login_response.data.user2; // if user is female
+        //
+        if (userLog1) {
+          userlogin(userLog1); // store user1 data in context
 
-        localStorage.setItem("users", userLog);
+          localStorage.setItem("users", userLog1); // store user1 data in localstorage
+        } else {
+          userlogin(userLog2); // store user2 data in context
+
+          localStorage.setItem("users", userLog2); // store user2 data in localstorage
+        }
 
         //console.log("response", login_response.data.message);
         toast.success(`${login_response.data.message}`, { duration: 1500 });
@@ -75,7 +81,7 @@ const Signin = () => {
       }
     } catch (error) {
       console.error(error);
-      toast.error(`${login_response.data.error}`, { duration: 1500 });
+      toast.error(`Error Occured`, { duration: 1500 });
     }
 
     // clear all fields

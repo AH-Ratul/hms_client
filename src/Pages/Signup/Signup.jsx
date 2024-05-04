@@ -6,6 +6,8 @@ import { NavLink } from "react-router-dom";
 const Signup = () => {
   const [formData, setFormData] = useState({
     username: "",
+    dateOfBirth: "",
+    gender: "",
     email: "",
     password: "",
   });
@@ -19,48 +21,59 @@ const Signup = () => {
   };
 
   const validateSignUp = () => {
-    if (!formData.username || !formData.email || !formData.password) {
+    if (
+      !formData.username ||
+      !formData.dateOfBirth ||
+      !formData.gender ||
+      !formData.email ||
+      !formData.password
+    ) {
       toast.error("All fields are required.", {
-        duration: 1000,
+        duration: 1500,
       });
       return false;
     }
 
     if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-      toast.error("Invalid email format.", { duration: 1000 });
+      toast.error("Invalid email format.", { duration: 1500 });
       return false;
     }
 
     if (formData.password.length < 6) {
-      toast.error("password must be at least 6 characters", {
-        duration: 1000,
+      toast.error("Password must be at least 6 characters", {
+        duration: 1500,
       });
       return false;
     }
     return true;
   };
 
-  const handleSingUp = (e) => {
+  const handleSingUp = async (e) => {
     e.preventDefault();
 
+    // validate before submission
     if (!validateSignUp()) {
       return;
     }
 
     try {
-      const user_login = axios.post(
+      const user_register = await axios.post(
         "http://localhost:5500/userSignup",
         formData
       );
-      console.log("user response", user_login.data);
-      toast.success("User Registration successfull", { duration: 1500 });
+
+      console.log( user_register);
+      toast.success(`${user_register.data.message}`, { duration: 1500 });
     } catch (error) {
       console.error(error);
+      toast.error("Error Occured", { duration: 1500 });
     }
 
     // clear all fields
     setFormData({
       username: "",
+      dateOfBirth: "",
+      gender: "",
       email: "",
       password: "",
     });
@@ -80,7 +93,7 @@ const Signup = () => {
             Please Register for your Account
           </p>
           <div className="mt-9 flex flex-col">
-            <p className="font-semibold tex-lg">Username</p>
+            <p className="font-semibold tex-lg">Fullname</p>
             <input
               type="text"
               name="username"
@@ -88,6 +101,34 @@ const Signup = () => {
               onChange={handleInputChange}
               className="border py-3 ps-3 outline-none w-96 mt-2 mb-5 rounded"
             />
+
+            <p className="font-semibold tex-lg">Date of Birth</p>
+            <input
+              type="date"
+              name="dateOfBirth"
+              value={formData.dateOfBirth}
+              onChange={handleInputChange}
+              className="border py-3 ps-3 pe-2 outline-none w-96 mt-2 mb-5 rounded"
+            />
+
+            <p className="font-semibold tex-lg">Gender</p>
+            <select
+              name="gender"
+              value={formData.gender}
+              onChange={handleInputChange}
+              className="border py-3 ps-3 outline-none w-96 mt-2 mb-5 rounded "
+            >
+              <option value="" className="bg-gray-200 p-4">
+                Select an option
+              </option>
+              <option value="Male" className="bg-blue-200 p-2">
+                Male
+              </option>
+              <option value="Female" className="bg-pink-50">
+                Female
+              </option>
+            </select>
+
             <p className="font-semibold tex-lg">Email</p>
             <input
               type="email"
@@ -115,7 +156,7 @@ const Signup = () => {
           </div>
           <p className="font-bold mt-7 mb-20 text-center w-96 text-black/60">
             Already Have an Account?
-            <NavLink to="/sign-in" className="text-teal-700">
+            <NavLink to="/sign-in" className="text-teal-700 hover:underline">
               {" "}
               Signin
             </NavLink>

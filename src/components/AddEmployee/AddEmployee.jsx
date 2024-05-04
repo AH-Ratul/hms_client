@@ -24,7 +24,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
   const handleAddEmp = async () => {
     console.log("form data", empData);
 
-    if (empData.branch !== "Chattogram" || "Cox's Bazar") {
+    if (empData.branch !== "Chattogram" && empData.branch !== "Cox's Bazar") {
       toast.error("Please give valid branch name", { duration: 2000 });
       return;
     }
