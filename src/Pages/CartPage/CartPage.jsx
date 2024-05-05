@@ -162,8 +162,8 @@ const CartPage = () => {
           </label>
         </div>
         <div className="mt-3 text-base">
-          <input type="radio" name="payment" value="mobile" />
-          <label htmlFor="offline" className="ml-2">
+          <input type="radio" name="payment" value="online" />
+          <label htmlFor="online" className="ml-2">
             Online (Mobile Banking)
           </label>
         </div>
