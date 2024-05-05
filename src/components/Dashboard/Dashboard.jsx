@@ -10,7 +10,7 @@ export const loadTotal = async () => {
 
 const Dashboard = () => {
   const total = useLoaderData();
-  const data = total.data[0];
+  const data = total.data;
 
   return (
     <div>
@@ -21,16 +21,17 @@ const Dashboard = () => {
       <div className="flex flex-wrap gap-7 mt-7 font-bold text-white/80">
         <div className="rounded w-[25%] leading-relaxed shadow-lg p-5 text-3xl bg-green-700">
           <h2>Total Room </h2>
-          <span>{data.total_room}</span>
+          <span>{data.totalRoom}</span>
         </div>
         <div className="rounded w-[25%] leading-relaxed shadow-lg p-5 text-3xl bg-blue-700">
           <p>Total Employee</p>
-          <span>{data.total_employee}</span>
+          <span>{data.totalEmployee}</span>
         </div>
         <div className="rounded w-[25%] leading-relaxed shadow-lg p-5 text-3xl bg-orange-600">
           <h2>Total Booking </h2>
-          <span>{data.total_booking}</span>
+          <span>{data.totalBooking}</span>
         </div>
+       
       </div>
     </div>
   );

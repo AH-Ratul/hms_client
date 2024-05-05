@@ -72,7 +72,6 @@ const BookingDetails = () => {
               <th className="border ">Room-id</th>
               <th className="border ">Room Name</th>
               <th className="border ">Room Type</th>
-              <th className="border ">Amount</th>
               <th className="border ">First Name</th>
               <th className="border ">Last Name</th>
               <th className="border ">Address</th>
@@ -93,7 +92,6 @@ const BookingDetails = () => {
                   <td className="border">{item.room_id}</td>
                   <td className="border">{item.room_name}</td>
                   <td className="border">{item.room_type}</td>
-                  <td className="border">{item.total_amount} tk.</td>
                   <td className="border">{item.first_name}</td>
                   <td className="border">{item.last_name}</td>
                   <td className="border">{item.address}</td>

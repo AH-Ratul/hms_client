@@ -124,12 +124,10 @@ const AddRoom = ({ isOpen, onClose }) => {
                 className="border py-1 px-2 outline-none ml-2"
               >
                 <option value="">Select an option</option>
-                <option value="Single">Single</option>
-                <option value="Double">Double</option>
-                <option value="King">King</option>
-                <option value="Queen">Queen</option>
-                <option value="Suite">Suite</option>
-                <option value="Deluxe">Deluxe</option>
+                <option value="Single" className="bg-green-100">Single</option>
+                <option value="Double" className="bg-purple-100">Double</option>
+                <option value="Suite" className="bg-blue-100">Suite</option>
+                <option value="Deluxe" className="bg-red-100">Deluxe</option>
               </select>
             </div>
             <div className="py-2">
