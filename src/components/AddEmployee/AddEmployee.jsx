@@ -6,7 +6,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
   const [empData, setEmpData] = useState({
     name: "",
     position: "",
-    shift: "",
+    branch: "",
     phone: "",
     address: "",
     hire_date: "",
@@ -46,7 +46,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
       setEmpData({
         name: "",
         position: "",
-        shift: "",
+        branch: "",
         phone: "",
         address: "",
         hire_date: "",
@@ -97,25 +97,15 @@ const AddEmployee = ({ isOpen, onClose }) => {
                 placeholder="Position"
                 className="border ps-2 py-1 outline-none w-full mb-4"
               />
-
-              <p className="font-medium mb-1">Shift</p>
-            <select
-              name="shift"
-              value={empData.shift}
-              onChange={handleOnChange}
-              className="border ps-2 py-1 outline-none w-full mb-4"
-            >
-              <option value="" className="bg-gray-200 p-4">
-                Select an option
-              </option>
-              <option value="Male" className="bg-blue-200 p-2">
-                Morning
-              </option>
-              <option value="Female" className="bg-pink-50">
-                Evening
-              </option>
-            </select>
-
+              <p className="font-medium mb-1">Branch</p>
+              <input
+                type="text"
+                name="branch"
+                value={empData.branch}
+                onChange={handleOnChange}
+                placeholder="Branch"
+                className="border ps-2 py-1 outline-none w-full mb-4"
+              />
               <p className="font-medium mb-1">Phone</p>
               <input
                 type="text"
