@@ -24,10 +24,10 @@ const AddEmployee = ({ isOpen, onClose }) => {
   const handleAddEmp = async () => {
     console.log("form data", empData);
 
-    if (empData.branch !== "Chattogram" && empData.branch !== "Cox's Bazar") {
-      toast.error("Please give valid branch name", { duration: 2000 });
-      return;
-    }
+    // if (empData.branch !== "Chattogram" && empData.branch !== "Cox's Bazar") {
+    //   toast.error("Please give valid branch name", { duration: 2000 });
+    //   return;
+    // }
 
     try {
       const addEmployee = await axios.post(
@@ -35,12 +35,9 @@ const AddEmployee = ({ isOpen, onClose }) => {
         empData
       );
 
-      console.log(addEmployee);
-      if (addEmployee) {
-        toast.success(`${addEmployee.data.message}`, { duration: 2000 });
-      } else {
-        toast.error(`${addEmployee.data.error}`, { duration: 1500 });
-      }
+      console.log(addEmployee.data);
+      toast.success(`${addEmployee.data.message}`, { duration: 1500 });
+      
 
       // clear all fields
       setEmpData({
@@ -53,7 +50,8 @@ const AddEmployee = ({ isOpen, onClose }) => {
         salary: "",
       });
     } catch (error) {
-      console.log(error);
+      console.log("ERR ->", error);
+      toast.error(`Error`, { duration: 1500 });
     }
   };
 
@@ -98,14 +96,20 @@ const AddEmployee = ({ isOpen, onClose }) => {
                 className="border ps-2 py-1 outline-none w-full mb-4"
               />
               <p className="font-medium mb-1">Branch</p>
-              <input
-                type="text"
+              <select
                 name="branch"
                 value={empData.branch}
                 onChange={handleOnChange}
-                placeholder="Branch"
                 className="border ps-2 py-1 outline-none w-full mb-4"
-              />
+              >
+                <option value="">Select an option</option>
+                <option value="Chattogram" className="bg-green-100">
+                  Chattogram
+                </option>
+                <option value="Cox's Bazar" className="bg-purple-100">
+                  Cox's Bazar
+                </option>
+              </select>
               <p className="font-medium mb-1">Phone</p>
               <input
                 type="text"
