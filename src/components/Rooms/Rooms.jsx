@@ -4,9 +4,13 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import AddRoom from "./AddRoom";
 import axios from "axios";
 import Loader from "../Loader/Loader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import DeleteRoom from "../Delete/DeleteRoom";
 
 const Rooms = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
   const openModal = () => {
     setIsOpen(true);
@@ -14,6 +18,13 @@ const Rooms = () => {
 
   const closeModal = () => {
     setIsOpen(false);
+  };
+
+  const openDelete = () => {
+    setIsDeleteOpen(true);
+  };
+  const closeDelete = () => {
+    setIsDeleteOpen(false);
   };
 
   const [data, setData] = useState([]);
@@ -35,9 +46,7 @@ const Rooms = () => {
   }, []);
 
   if (loading) {
-    return (
-      <Loader />
-    );
+    return <Loader />;
   }
 
   return (
@@ -49,7 +58,7 @@ const Rooms = () => {
             <p className="ml-1  font-semibold">Rooms</p>
           </h2>
         </div>
-        <div>
+        <div className="flex items-center">
           <button
             onClick={openModal}
             className="flex items-center bg-green-600 hover:bg-green-700 py-2 px-2 text-xs font-bold text-white rounded"
@@ -58,6 +67,16 @@ const Rooms = () => {
             Add New Room
           </button>
           <AddRoom isOpen={isOpen} onClose={closeModal} />
+          <div>
+            <button
+              onClick={openDelete}
+              className="flex items-center bg-red-600 hover:bg-red-500 py-2 px-2 text-sm font-bold text-white rounded ml-3"
+            >
+              <FontAwesomeIcon icon={faTrashCan} className="mr-1 text-base" />
+              Delete Room
+            </button>
+            <DeleteRoom isOpen={isDeleteOpen} onClose={closeDelete} />
+          </div>
         </div>
       </div>
       <div className="mt-5  ">
