@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Loader from "../../../components/Loader/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import DeleteBooking from "../../../components/DeleteBooking/DeleteBooking";
+import DeleteBooking from "../../../components/Delete/DeleteBooking";
 
 const BookingDetails = () => {
   const [getData, setGetData] = useState([]);
@@ -14,6 +14,7 @@ const BookingDetails = () => {
 
   const openModal = () => {
     setIsOpen(true);
+    handlePathChange()
   }
 
   const closeModal = () => {
