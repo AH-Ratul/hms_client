@@ -4,10 +4,12 @@ import AddEmployee from "../AddEmployee/AddEmployee";
 import Loader from "../Loader/Loader";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserTie } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faUserTie } from "@fortawesome/free-solid-svg-icons";
+import DeleteEmployee from "../Delete/DeleteEmployee";
 
 const Employee = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
   const openModal = () => {
     setIsOpen(true);
@@ -16,6 +18,13 @@ const Employee = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  const openDelete =() => {
+    setIsDeleteOpen(true);
+  }
+  const closeDelete = () => {
+    setIsDeleteOpen(false);
+  }
 
   // get data from server -------------------
   const [data, setData] = useState([]);
@@ -55,15 +64,25 @@ const Employee = () => {
             </p>
           </h2>
         </div>
-        <div>
+        <div className="flex items-center">
           <button
             onClick={openModal}
-            className="flex items-center bg-green-600 hover:bg-green-700 py-2 px-2 text-xs font-bold text-white rounded"
+            className="flex items-center bg-green-600 hover:bg-green-500 py-2 px-2 text-xs font-bold text-white rounded"
           >
             <IoAddCircleOutline className="mr-1 text-xl" />
             Add Employee
           </button>
           <AddEmployee isOpen={isOpen} onClose={closeModal} />
+          <div>
+            <button
+              onClick={openDelete}
+              className="flex items-center bg-red-600 hover:bg-red-500 py-2 px-2 text-sm font-bold text-white rounded ml-3"
+            >
+              <FontAwesomeIcon icon={faTrashCan} className="mr-1 text-base" />
+              Delete Employee
+            </button>
+            <DeleteEmployee isOpen={isDeleteOpen} onClose={closeDelete} />
+          </div>
         </div>
       </div>
       <div className="mt-3">
